@@ -61,20 +61,6 @@ Everything heavy runs in Metal: droplet integration, impact detection, splat
 stamping with framebuffer-fetch pigment blending, wet-surface relaxation, and
 the relit present pass. The CPU only steps the pendulum and feeds droplets.
 
-## Building
-
-Requirements: **Xcode 26+** on Apple silicon (the Metal shader toolchain is a
-one-time `xcodebuild -downloadComponent MetalToolchain` if missing).
-
-```sh
-git clone https://github.com/kindparkllc/SwingPaint.git
-open Paint.xcodeproj   # build & run the Paint scheme
-```
-
-The app runs as a resident desktop-painting app: no main window, an optional
-menu bar icon (toggleable in the controls panel), and sessions layered just
-above your wallpaper but below your working windows — painting never
-interrupts work.
 
 
 ---
