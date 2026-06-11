@@ -76,48 +76,6 @@ menu bar icon (toggleable in the controls panel), and sessions layered just
 above your wallpaper but below your working windows — painting never
 interrupts work.
 
-## Self-driving demo harness
-
-The app can drive itself for development and screenshots via environment
-variables:
-
-| Variable | Effect |
-|---|---|
-| `PAINT_DEMO=pour` | scripted fling + counter-fling pour session |
-| `PAINT_DEMO=splat` | drops yellow/blue/red test blobs (mixing check) |
-| `PAINT_DEMO=smudge` | drops blobs, then sweeps a synthetic finger through them |
-| `PAINT_EXPORT=/path.png` | exports the artwork PNG during the demo |
-| `PAINT_QUIT=1` | quits after the demo/export finishes |
-| `PAINT_DESKTOP=1` | demo paints over the desktop wallpaper |
-| `PAINT_MAXSWINGS=n` | forces a swing-limited pour |
-
-Example:
-
-```sh
-PAINT_DEMO=pour PAINT_EXPORT="$HOME/Desktop/pour.png" PAINT_QUIT=1 \
-  ./build/Build/Products/Debug/Paint.app/Contents/MacOS/Paint
-```
-
-## Project layout
-
-```
-Paint/
-├── PaintApp.swift            # app lifecycle: status item, overlay window, fades
-├── ContentView.swift         # canvas + control rail + hint
-├── Simulation/
-│   ├── Pendulum.swift        # spherical pendulum, grab/fling/spin, swing counting
-│   ├── Bucket.swift          # paint chambers, Torricelli outflow
-│   └── Simulation.swift      # droplet emission along the swept path, smudging
-├── Rendering/
-│   ├── Renderer.swift        # Metal frame loop, demo harness, PNG export
-│   ├── ShaderTypes.swift     # Swift mirrors of GPU structs
-│   └── Shaders/              # particles, splat stamping (K-M), surface, rope
-├── Audio/SplatAudio.swift    # procedural liquid splatter synthesis
-└── UI/                       # controls panel, settings, Metal view + input
-```
-
-A sibling iOS/iPadOS port (multi-touch finger painting, two-finger spin) lives
-in the separate `PaintBucket` project.
 
 ---
 
